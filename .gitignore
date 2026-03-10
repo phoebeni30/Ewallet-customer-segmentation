@@ -1,0 +1,14 @@
+ZDS-Ass_DA*.pdf
+
+venv/
+.venv/
+env/
+
+**/__pycache__/
+*.pyc
+
+*.csv
+
+*kfc*.py
+*KFC*.py
+
