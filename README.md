@@ -138,7 +138,7 @@ The dashboard provides a dynamic environment to monitor segment performance acro
 
 ### 🖼️ Dashboard Preview
 <p align="center">
-  <img src="https://ibb.co/FbjMrGzS" width="850" alt="Customer Segmentation Dashboard">
+  <img src="https://i.ibb.co/PZfnLBg7/dashboard-transaction.png" width="850" alt="Customer Segmentation Dashboard">
 </p>
 
 ### 🛠️ Key Features
