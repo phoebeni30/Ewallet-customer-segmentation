@@ -7,6 +7,9 @@
 3. [Analytical Pipeline](#3-analytical-pipeline)
 4. [Dataset Characteristics](#4-dataset-characteristics)
 5. [Project Architecture](#5-project-architecture)
+6. [Results & Strategic Summary](#6-results--strategic-summary)
+7. [Interactive Dashboard & Visualization](#7-interactive-dashboard--visualization)
+8. [Conclusion & Future Work](#8-conclusion--future-work)
 
 ---
 
@@ -23,7 +26,7 @@ Effective segmentation requires a multi-dimensional analysis across four fundame
 | **Psychographic** | Why | Latent Drivers (Lifestyle, Social Status, Personality). |
 
 **The Challenge:**
-Most traditional methods fail to synthesize Behavioral and Psychographic aspects into actionable insights. This project addresses the problem of classifying customers into distinct, homogeneous groups based on their transaction footprints and interaction habits using **K-Means** and **Dimensionality Reduction (PCA)**.
+Most traditional methods fail to synthesize Behavioral and Psychographic aspects into actionable insights. This project addresses the problem of classifying customers into distinct, homogeneous groups based on their transaction footprints using **K-Means** and **Dimensionality Reduction (PCA)**.
 
 ---
 
@@ -42,13 +45,14 @@ The Customer Segmentation Project is a specialized application of Machine Learni
 
 ## 3. Analytical Pipeline
 
-1.  **Preprocessing:** Data merging, exhaustive Cleaning, and Exploratory Data Analysis (EDA).
-2.  **Feature Engineering:** Transformation of transactional records into structured Customer Profiles.
-3.  **Segmentation Frameworks:**
-    * **Task 1 (RFM Analysis):** * *Approach A (Manual):* Deterministic logic based on RFM scores.
+1. **Preprocessing:** Data merging, exhaustive Cleaning, and Exploratory Data Analysis (EDA).
+2. **Feature Engineering:** Transformation of transactional records into structured Customer Profiles.
+3. **Segmentation Frameworks:**
+    * **Task 1 (RFM Analysis):**
+        * *Approach A (Manual):* Deterministic logic based on RFM scores.
         * *Approach B (K-Means):* RFM Extraction → Yeo-Johnson Transformation → Clustering.
     * **Task 2 (Advanced Behavioral Clustering):** High-dimensional Feature Engineering → PCA → K-Means Clustering.
-4.  **Synthesis:** Strategic Insight Generation and Business Recommendations.
+4. **Synthesis:** Strategic Insight Generation and Business Recommendations.
 
 ---
 
@@ -73,63 +77,68 @@ The Customer Segmentation Project is a specialized application of Machine Learni
 | **SalesAmount** | int64 | Total monetary value of the transaction. |
 | **VoucherStatus** | object | Flag for promotion application (Yes/No). |
 
-#### `dim_store.csv` & `dim_merchant.csv`
-* **Geography:** Province/City (e.g., Ho Chi Minh, Hanoi).
-* **Identity:** Merchant Name, Merchant ID, App ID.
-
 ### ⚠️ Data Challenges & Opportunities
-* **Challenges:** * *Extreme Volatility:* High-value "Whales" skewing statistical means.
-    * *Information Sparsity:* Limited quantitative metrics.
-    * *Skewed Distribution:* High proportion of "One-time Walk-ins".
-* **Opportunities:** * *Categorical Depth:* Detecting correlations between App vs. Call Center preferences.
-    * *Feature Expansion:* Deriving advanced ratios (AOV, Recency, Voucher Reliance).
+* **Challenges:** High-value "Whales" skewing means; High proportion of "One-time Walk-ins".
+* **Opportunities:** Categorical depth (App vs. Store preference); Advanced ratios (AOV, Voucher Reliance).
 
 ---
 
 ## 5. Project Architecture
 ```text
-├── data/                   # Raw and Processed data
-├── analysis/              # Jupyter Notebooks for EDA & Modeling
-├── utils/                  # Helper functions and configurations
-│   ├── cluster_model.py    # Clustering logic & PCA
-│   └── extract_customer_table.py  # Extract merged dataframe and requested tables
-│   └── rfm_manual.py        # RFM features manual extracting pipeline
-│   └── rfm_feature_engineering.py  # RFM engineering pipeline
-│   └── custom_features_config2.py  # Custom Features Dictionary
-│   └── custom_feature_engineering2.py  # Feature engineering pipeline
-├── dashboard/                # Exported Power BI dashboards
-└── README.md               # Project documentation
-└── requirements.txt            # Python libraries
+├── data/                    # Raw and Processed data
+├── analysis/                # Jupyter Notebooks for EDA & Modeling
+├── utils/                   # Helper functions and configurations
+│   ├── cluster_model.py     # Clustering logic & PCA
+│   ├── extract_customer_table.py   # Data merging & extraction
+│   ├── rfm_manual.py        # Manual RFM pipeline
+│   ├── rfm_feature_engineering.py  # RFM ML pipeline
+│   ├── custom_features_config2.py  # Features Dictionary
+│   └── custom_feature_engineering2.py # Behavioral pipeline
+├── dashboard/               # Exported Power BI dashboards & Screenshots
+├── README.md                # Project documentation
+└── requirements.txt         # Python libraries
+```
 
 ---
 
 ## 6. Results & Strategic Summary
 
 ### 📊 Segment Profiles & Tactical Roadmap
-The analysis identified 4 distinct customer archetypes. Below is a summary of their behavioral characteristics and the corresponding business strategies:
-
-| Cluster | Archetype | Volume/Value Contribution | Core Strategy | Primary Action |
+| Cluster | Archetype | Value Contribution | Core Strategy | Primary Action |
 | :--- | :--- | :--- | :--- | :--- |
-| **Cluster 0** | **Casual Walk-ins** | Moderate AOV / Low Retention | **Conversion** | In-store return discounts & Newcomer combos. |
-| **Cluster 1** | **Traditional Loyalists** | **2nd Highest** Contributor | **Experience** | Group sets, QR-table ordering & personalized in-store services. |
-| **Cluster 2** | **Tech-Savviers** | **Highest** Contributor | **LTV Expansion** | VIP Tier program, Gamification & Threshold-based vouchers. |
-| **Cluster 3** | **Bulk Delivery Spenders** | High-Value Transactions | **Retention** | Corporate/Office combos & Push-notifications at peak hours. |
-
----
+| **Cluster 0** | **Casual Walk-ins** | Low Retention | **Conversion** | In-store discounts & Newcomer combos. |
+| **Cluster 1** | **In-store Loyalists** | **2nd Highest** | **Experience** | Group sets & QR-table ordering. |
+| **Cluster 2** | **Tech-Savviers** | **Highest** | **LTV Expansion** | VIP Tier & App Gamification. |
+| **Cluster 3** | **Delivery Spenders** | High-Value | **Retention** | Office combos & Peak-hour Push notifications. |
 
 ### 💡 Segment Deep-Dive
-
-#### **Cluster 1: The Dine-in Experience Seekers**
-* **Insights:** This group prioritizes the physical store as a "Third Place." They prefer ordering via Website/Call Center and have the **highest Dine-in rate** among all clusters.
-* **Strategic Move:** Instead of forcing app adoption, enhance their offline comfort with "Order & Pay at Table" QR solutions and bulk family/friend combos to increase basket size.
-
-#### **Cluster 2 & 3: The Digital & Delivery Power Users**
-* **Insights:** Cluster 2 drives the most volume via App/Vouchers, while Cluster 3 focuses on high-ticket delivery orders.
-* **Strategic Move:** Shift from generic discounts to **Conditional Promotions** (e.g., "$5 off for orders over $20") to push spending beyond their typical threshold while maintaining engagement via App gamification.
+* **Cluster 1 (Dine-in Seekers):** Highest Dine-in rate. They value the physical store as a "Third Place." Strategy focuses on QR-ordering and family-sized sets.
+* **Cluster 2 & 3 (Digital Power Users):** Highly sensitive to vouchers. Strategy focuses on **Conditional Promotions** (e.g., "$5 off for orders over $20") to increase basket size.
 
 ---
 
-### 🔍 Analytical Performance Summary
-While the segments are business-actionable, the modeling process revealed critical technical insights:
-* **Dimensionality Reduction:** 3D PCA successfully explained **77%** of the total variance, capturing the major behavioral trends (App usage, Order Value, and Channel preference).
-* **Clustering Stability:** K-means with $k=4$ provided the best balance between statistical granularity and business interpretability, though it highlighted significant boundary overlap in the "one-time walk-in" density zone.
+## 7. Interactive Dashboard & Visualization
+> **Tools:** Power BI Desktop, DAX, Field Parameters.
+
+The dashboard provides a dynamic environment to monitor segment performance across various KPIs.
+
+### 🖼️ Dashboard Preview
+<p align="center">
+  <img src="dashboard/dashboard_screenshot.png" width="850" alt="Customer Segmentation Dashboard">
+</p>
+
+### 🛠️ Key Features
+* **Dynamic Metric Switching:** Using **Field Parameters** to toggle between **Sales Volume** and **Transaction Count**.
+* **Period-over-Period (PoP):** Automated DAX to track MoM growth optimized for the F&B calendar.
+* **Drill-down Analytics:** Interactive filters for Cluster ID, Order Source, and Geographic regions.
+
+---
+
+## 8. Conclusion & Future Work
+### 🔑 Key Takeaways
+* **Beyond RFM:** Incorporating categorical channels (App, Store, Web) captured nuances that simple RFM ignores.
+* **Technical Critique:** 3D PCA explained **77%** variance. However, K-means faced challenges with overlapping "noise" from one-time users.
+
+### 🚀 Future Improvements
+* **Algorithmic Shift:** Experiment with **DBSCAN** or **GMM** to better handle non-spherical clusters.
+* **Feature Enrichment:** Add time-based features (peak hours) and external data (holidays) for lifestyle mapping.
