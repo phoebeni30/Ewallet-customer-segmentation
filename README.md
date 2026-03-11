@@ -77,6 +77,19 @@ The Customer Segmentation Project is a specialized application of Machine Learni
 | **SalesAmount** | int64 | Total monetary value of the transaction. |
 | **VoucherStatus** | object | Flag for promotion application (Yes/No). |
 
+#### `dim_store.csv`
+| Column Name | Data Type | Definition |
+| :--- | :--- | :--- |
+| **storeID** | object | Unique identifier for each physical merchant outlet or restaurant location. |
+| **Province** | object | The administrative region or city (e.g., 'Ho Chi Minh', 'Hanoi') where the store is situated. |
+
+#### `dim_merchant.csv`
+| Column Name | Data Type | Definition |
+| :--- | :--- | :--- |
+| **appid** | int64 | Unique identifier for the specific application or platform version. |
+| **merchantID** | int64 | Unique identifier for the business partner or merchant entity. |
+| **merchantName** | object | The descriptive name of the merchant (e.g., brand name or restaurant name). |
+
 ### ⚠️ Data Challenges & Opportunities
 * **Challenges:** High-value "Whales" skewing means; High proportion of "One-time Walk-ins".
 * **Opportunities:** Categorical depth (App vs. Store preference); Advanced ratios (AOV, Voucher Reliance).
@@ -85,7 +98,7 @@ The Customer Segmentation Project is a specialized application of Machine Learni
 
 ## 5. Project Architecture
 ```text
-├── data/                    # Raw and Processed data
+├── data/                    # Raw data
 ├── analysis/                # Jupyter Notebooks for EDA & Modeling
 ├── utils/                   # Helper functions and configurations
 │   ├── cluster_model.py     # Clustering logic & PCA
@@ -94,6 +107,7 @@ The Customer Segmentation Project is a specialized application of Machine Learni
 │   ├── rfm_feature_engineering.py  # RFM ML pipeline
 │   ├── custom_features_config2.py  # Features Dictionary
 │   └── custom_feature_engineering2.py # Behavioral pipeline
+├── output/               # Processed and final data
 ├── dashboard/               # Exported Power BI dashboards & Screenshots
 ├── README.md                # Project documentation
 └── requirements.txt         # Python libraries
@@ -124,7 +138,7 @@ The dashboard provides a dynamic environment to monitor segment performance acro
 
 ### 🖼️ Dashboard Preview
 <p align="center">
-  <img src="dashboard/dashboard_screenshot.png" width="850" alt="Customer Segmentation Dashboard">
+  <img src="https://ibb.co/FbjMrGzS" width="850" alt="Customer Segmentation Dashboard">
 </p>
 
 ### 🛠️ Key Features
