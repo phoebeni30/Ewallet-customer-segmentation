@@ -12,3 +12,7 @@ env/
 *kfc*.py
 *KFC*.py
 
+*run.py
+
+custom_features_config.py
+custom_feature_engineering.py

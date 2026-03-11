@@ -275,7 +275,7 @@ class ClusterAnalysis:
         loadings_top5 = loadings[['PC1', 'PC2', 'PC3', 'PC4', 'PC5']]
 
         list_pcs = [f'PC{i+1}' for i in range(5)]
-        cluster_pca_profile = self.df_pca.groupby('clusters_by_k_4')[list_pcs].mean()
+        cluster_pca_profile = self.df_pca.groupby('clusters_by_k_5')[list_pcs].mean()
         print(cluster_pca_profile)
 
         plt.figure(figsize=(12, 8))
